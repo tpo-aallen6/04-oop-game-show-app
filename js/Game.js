@@ -11,11 +11,12 @@ class Game {
       new Phrase('Blood and thunder'),
       new Phrase('Strength and honor'),
       new Phrase('and the gunslinger followed'),
-      new Phrase('somebody poisoned the waterhole'),
-      new Phrase('reach for the sky'),
-      new Phrase('theres a snake in my boots'),
+      new Phrase('That was falling with style'),
+      new Phrase('Reach for the sky'),
+      new Phrase('Cool cool cool cool no doubt'),
       new Phrase('For the Horde'),
-      new Phrase('Khajiit has wares if you have coin')
+      new Phrase('Khajiit has wares if you have coin'),
+      new Phrase('There is no Pepe Silvia')
     ]
     this.activePhrase = null
   }
