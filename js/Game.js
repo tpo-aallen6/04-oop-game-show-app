@@ -7,14 +7,15 @@ class Game {
   constructor () {
     this.missed = 0
     this.phrases = [
-      new Phrase('this is the way'),
-      new Phrase('d and d ruined thrones'),
-      new Phrase('may the force be with you'),
+      new Phrase('This is the way'),
+      new Phrase('Blood and thunder'),
+      new Phrase('Strength and honor'),
       new Phrase('and the gunslinger followed'),
       new Phrase('somebody poisoned the waterhole'),
       new Phrase('reach for the sky'),
       new Phrase('theres a snake in my boots'),
-      new Phrase('forget about it')
+      new Phrase('For the Horde'),
+      new Phrase('Khajiit has wares if you have coin')
     ]
     this.activePhrase = null
   }
