@@ -25,7 +25,8 @@ class Game {
 
   startGame () {
     document.querySelector('#overlay').style.display = 'none'
-    this.activePhrase = this.getRandomPhrase().addPhraseToDisplay()
+    this.activePhrase = this.getRandomPhrase()
+    this.activePhrase.addPhraseToDisplay()
   }
 
   getRandomPhrase () {
@@ -33,9 +34,21 @@ class Game {
     return this.phrases[random]
   }
 
-  handleInteraction () {}
+  handleInteraction () {
+    // do lots of things
+  }
 
-  removeLife () {}
+  removeLife () {
+    const liveHearts = document.querySelectorAll('li.tries img')
+
+    for (let i = 0; i < liveHearts.length; i++) {
+      if (this.missed === i) {
+        liveHearts[i].src = 'images/lostHeart.png'
+      }
+    }
+
+    this.missed++
+  }
 
   checkForWin () {
     const letters = document.querySelectorAll('#phrase ul li.letter')
@@ -43,7 +56,7 @@ class Game {
     return lettersArray.every(letter => letter.classList.contains('show'))
   }
 
-  gameOver () {
-
+  gameOver (gameWon) {
+    // do something
   }
 }

@@ -30,6 +30,8 @@ class Phrase {
 
   showMatchedLetter (letter) {
     const letters = document.querySelectorAll(`li[class="hide letter ${letter}"]`)
-    letters.forEach(_letter_ => _letter_.classList.replace('hide', 'show'))
+    letters.forEach(letter => {
+      letter.classList.replace('hide', 'show')
+    })
   }
 }
