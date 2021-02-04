@@ -26,7 +26,19 @@ class Game {
   **/
 
   startGame () {
-    // something something about a reset feature
+    document.querySelectorAll('#phrase ul li')
+      .forEach(li => li.parentNode.removeChild(li))
+
+    for (let i = 0; i < 5; i++) {
+      const heartImages = document.querySelectorAll('li.tries img')
+      heartImages[i].src = 'images/liveHeart.png'
+    }
+
+    document.querySelectorAll('button.key').forEach(button => {
+      button.disabled = false
+      button.classList.remove('chosen')
+      button.classList.remove('wrong')
+    })
 
     document.querySelector('#overlay').style.display = 'none'
     this.activePhrase = this.getRandomPhrase()
@@ -38,8 +50,22 @@ class Game {
     return this.phrases[random]
   }
 
-  handleInteraction () {
-    // do lots of things
+  handleInteraction (button) {
+    const isLetterInPhrase = this.activePhrase.checkLetter(button.textContent)
+    button.disabled = true
+
+    if (isLetterInPhrase) {
+      button.classList.add('chosen')
+      this.activePhrase.showMatchedLetter(button.textContent)
+      this.checkForWin()
+
+      if (this.checkForWin()) {
+        this.gameOver('win')
+      }
+    } else {
+      button.classList.add('wrong')
+      this.removeLife()
+    }
   }
 
   removeLife () {
@@ -66,7 +92,7 @@ class Game {
       document.querySelector('#game-over-message').textContent = 'Congratulations, you win!'
     } else {
       document.querySelector('#overlay').className = 'lose'
-      document.querySelector('#game-over-message').textContent = 'Sorry, you lose'
+      document.querySelector('#game-over-message').textContent = 'Sorry, you lose.'
     }
   }
 }
