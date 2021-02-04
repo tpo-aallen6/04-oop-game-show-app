@@ -12,12 +12,13 @@ class Phrase {
     const ul = document.querySelector('#phrase ul')
     for (let i = 0; i < this.phrase.length; i++) {
       const li = document.createElement('li')
+      const char = this.phrase.charAt(i)
 
-      if (this.phrase.charAt(i) === ' ') {
+      if (char === ' ') {
         li.className = 'space'
       } else {
-        li.className = `hide letter ${this.phrase.charAt(i)}`
-        li.textContent = this.phrase.charAt(i)
+        li.className = `hide letter ${char}`
+        li.textContent = char
       }
 
       ul.append(li)
@@ -25,13 +26,12 @@ class Phrase {
   }
 
   checkLetter (letter) {
-    return this.phrase.includes(letter)
+    return this.phrase.includes(letter.toLowerCase())
   }
 
   showMatchedLetter (letter) {
-    const letters = document.querySelectorAll(`li[class="hide letter ${letter}"]`)
-    letters.forEach(letter => {
-      letter.classList.replace('hide', 'show')
-    })
+    letter = letter.toLowerCase()
+    const letterElements = document.querySelectorAll(`li[class="hide letter ${letter}"]`)
+    letterElements.forEach(element => element.classList.replace('hide', 'show'))
   }
 }

@@ -3,9 +3,7 @@
  * app.js
 **/
 
-let game = new Game()
-// game.getRandomPhrase().addPhraseToDisplay()
-// console.log(game.getRandomPhrase())
+let game
 
 document.querySelector('#btn__reset').addEventListener('click', (e) => {
   game = new Game()

@@ -26,6 +26,8 @@ class Game {
   **/
 
   startGame () {
+    // something something about a reset feature
+
     document.querySelector('#overlay').style.display = 'none'
     this.activePhrase = this.getRandomPhrase()
     this.activePhrase.addPhraseToDisplay()
@@ -41,24 +43,30 @@ class Game {
   }
 
   removeLife () {
-    const liveHearts = document.querySelectorAll('li.tries img')
-
-    for (let i = 0; i < liveHearts.length; i++) {
-      if (this.missed === i) {
-        liveHearts[i].src = 'images/lostHeart.png'
-      }
-    }
-
+    const heartImages = document.querySelectorAll('li.tries img')
+    heartImages[this.missed].src = 'images/lostHeart.png'
     this.missed++
+
+    if (this.missed === 5) {
+      this.gameOver('lose')
+    }
   }
 
   checkForWin () {
-    const letters = document.querySelectorAll('#phrase ul li.letter')
-    const lettersArray = Array.from(letters)
-    return lettersArray.every(letter => letter.classList.contains('show'))
+    return Array
+      .from(document.querySelectorAll('#phrase ul li.letter'))
+      .every(element => element.classList.contains('show'))
   }
 
-  gameOver (gameWon) {
-    // do something
+  gameOver (result) {
+    document.querySelector('#overlay').style.display = 'block'
+
+    if (result === 'win') {
+      document.querySelector('#overlay').className = 'win'
+      document.querySelector('#game-over-message').textContent = 'Congratulations, you win!'
+    } else {
+      document.querySelector('#overlay').className = 'lose'
+      document.querySelector('#game-over-message').textContent = 'Sorry, you lose'
+    }
   }
 }
