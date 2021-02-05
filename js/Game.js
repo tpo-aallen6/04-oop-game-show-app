@@ -118,7 +118,7 @@ class Game {
       document.querySelector('#game-over-message').textContent = 'Congratulations, you win!'
     } else {
       document.querySelector('#overlay').className = 'lose'
-      document.querySelector('#game-over-message').textContent = 'Sorry, you lose.'
+      document.querySelector('#game-over-message').textContent = 'Sorry, you lose :('
     }
   }
 }
