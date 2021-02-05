@@ -5,16 +5,31 @@
 
 let game
 
+/**
+ * event listener for the start button that starts a new game
+**/
+
 document.querySelector('#btn__reset').addEventListener('click', (e) => {
   game = new Game()
   game.startGame()
 })
+
+/**
+ * event listener for the on screen keyboard button clicks
+**/
 
 document.querySelector('#qwerty').addEventListener('click', (e) => {
   if (e.target.tagName === 'BUTTON') {
     game.handleInteraction(e.target)
   }
 })
+
+/**
+ * event listener for the keyboard keyup event
+ * callse handleInteraction() if the game has been started,
+ * the player has lives remaining, and the key pressed
+ * is a character (a-z) on the qwerty keyboard
+**/
 
 document.addEventListener('keyup', (e) => {
   if (document.querySelector('#overlay').style.display === 'none') {
