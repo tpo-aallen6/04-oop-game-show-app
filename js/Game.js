@@ -13,7 +13,7 @@ class Game {
       new Phrase('and the gunslinger followed'),
       new Phrase('That was falling with style'),
       new Phrase('Reach for the sky'),
-      new Phrase('Cool cool cool cool no doubt'),
+      new Phrase('May the force be with you'),
       new Phrase('For the Horde'),
       new Phrase('Khajiit has wares if you have coin'),
       new Phrase('There is no Pepe Silvia')
@@ -45,10 +45,20 @@ class Game {
     this.activePhrase.addPhraseToDisplay()
   }
 
+  /**
+  * Selects random phrase from phrases property
+  * @return {Object} random Phrase object chosen to be used
+  **/
+
   getRandomPhrase () {
     const random = Math.floor(Math.random() * this.phrases.length)
     return this.phrases[random]
   }
+
+  /**
+  * Handles onscreen keyboard button clicks
+  * @param (HTMLButtonElement) button - The clicked button element
+  **/
 
   handleInteraction (button) {
     const isLetterInPhrase = this.activePhrase.checkLetter(button.textContent)
@@ -68,6 +78,12 @@ class Game {
     }
   }
 
+  /**
+  * Increases the value of the missed property
+  * Removes a life from the scoreboard
+  * Checks if player has remaining lives and ends game if player is out
+  **/
+
   removeLife () {
     const heartImages = document.querySelectorAll('li.tries img')
     heartImages[this.missed].src = 'images/lostHeart.png'
@@ -78,11 +94,21 @@ class Game {
     }
   }
 
+  /**
+  * Checks for winning move
+  * @return {boolean} True if game has been won, false if game wasn't won
+  **/
+
   checkForWin () {
     return Array
       .from(document.querySelectorAll('#phrase ul li.letter'))
       .every(element => element.classList.contains('show'))
   }
+
+  /**
+  * Displays game over message
+  * @param (string) result - 'win' for a win, 'lose' for a loss
+  **/
 
   gameOver (result) {
     document.querySelector('#overlay').style.display = 'block'
