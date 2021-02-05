@@ -15,3 +15,22 @@ document.querySelector('#qwerty').addEventListener('click', (e) => {
     game.handleInteraction(e.target)
   }
 })
+
+document.addEventListener('keyup', (e) => {
+  const key = e.key
+  const keyButtons = document.querySelectorAll('button.key')
+  let button
+
+  if (game.checkForWin() || game.missed === 5) {
+    return
+  }
+  for (let i = 0; i < keyButtons.length; i++) {
+    if (key === keyButtons[i].textContent) {
+      button = keyButtons[i]
+      if (button.disabled) {
+        break
+      }
+      game.handleInteraction(button)
+    }
+  }
+})
